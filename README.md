@@ -1,16 +1,69 @@
-# thegeekachu.dev
-My Personal Website
+# Thegeekachudev app
 
-This is one of my first pure HTML projects, and as such, is a WIP, but I'm proud of it.
-I used ZERO AI, which I never have, but kinda proud of it, and used one of my modified CSS stylesheets from back in the day when I did HTML stuff more often. Credit to the Hack Club tutorial, w3schools, and GeeksforGeeks. 
-So basically, I made this because I wanted a personal site, but I'm broke.
-I also do not generally use HTML/CSS for web dev, I prefer to use a Python framework, but, like, whatever.
-So, the idea was to use the money from this to get my dream domain, thegeekachu.dev, and then switch it to Flet,
-the Python web framework I normally use, and something called Steno, which I found while reviewing Stardance projects,
-and I thought was really cool, especially useful for blog articles and devlogs and stuff. 
-So, if you're reading this, please put this project through so i can afford my own domain. Yay!
-I will also be using subdomains of this domain for most future web-hosted projects, so yeah.
-Expect great things!
+## Run the app
 
-Regards,
-TheGeekachu
+### uv
+
+Run as a desktop app:
+
+```bash
+uv run flet run
+```
+
+Run as a web app:
+
+```bash
+uv run flet run --web
+```
+
+For more details on running the app, refer to the [Getting Started Guide](https://flet.dev/docs/).
+
+## Build the app
+
+### Android
+
+```bash
+flet build apk -v
+```
+
+For more details on building and signing `.apk` or `.aab`, refer to the [Android Packaging Guide](https://flet.dev/docs/publish/android/).
+
+### iOS
+
+```bash
+flet build ipa -v
+```
+
+For more details on building and signing `.ipa`, refer to the [iOS Packaging Guide](https://flet.dev/docs/publish/ios/).
+
+### macOS
+
+```bash
+flet build macos -v
+```
+
+For more details on building macOS package, refer to the [macOS Packaging Guide](https://flet.dev/docs/publish/macos/).
+
+### Linux
+
+```bash
+flet build linux -v
+```
+
+For more details on building Linux package, refer to the [Linux Packaging Guide](https://flet.dev/docs/publish/linux/).
+
+### Windows
+
+```bash
+flet build windows -v
+```
+
+For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
+
+### Web
+
+```bash
+flet build web -v
+```
+
+For more details on building Web app, refer to the [Web Packaging Guide](https://flet.dev/docs/publish/web/).
