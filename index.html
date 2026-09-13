@@ -1,136 +1,309 @@
-<!DOCTYPE html><html><head>
-  <base href="/">
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheGeekachu | Systems & Core Infrastructure Engineer</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --surface: #0b0b0c;
+            --card-bg: #121214;
+            --accent: #f25f3a; 
+            --accent-dim: rgba(242, 95, 58, 0.1);
+            --text: #f4f4f6;
+            --muted: #83838c;
+            --border: #1f1f23;
+            --radius: 12px;
+        }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="thegeekachudev">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon-192.png">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <title>thegeekachudev</title>
-  <link rel="manifest" href="manifest.json">
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 0 24px;
+        }
 
-  <script>
-    var flet = {
-      pyodide: true,
-      multiView: false,
-      noCdn: "False".toLowerCase() == "true",
-      webSocketEndpoint: "/ws",
-      entrypointBaseUrl: "/",
-      assetBase: "/",
-      routeUrlStrategy: "path",
-      canvasKitBaseUrl: "/canvaskit/",
-      // .mjs is required: python-worker.js is a module worker and loads
-      // the runtime via dynamic `import()`. Pyodide >= 0.29 also refuses
-      // to run in classic workers. Use the local copy that `flet build`
-      // drops into web/pyodide/ when --no-cdn is set; otherwise pull
-      // from jsdelivr so the build artifact can stay slim.
-      
-      pyodideUrl: "https://cdn.jsdelivr.net/pyodide/v314.0.3/full/pyodide.mjs",
-      
-      pythonModuleName: "main",
-      webRenderer: "canvaskit",
-      fontFallbackBaseUrl: "assets/fonts/", // for Noto Emoji, use Google CDN
-      appPackageUrl: "assets/app/app.zip"
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
 
-    flet.flutterAppLoaded = new Promise((resolve) => {
-      flet.flutterAppResolve = resolve;
-    });
+        /* --- NAVIGATION APPBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+        }
 
-    flet.flutterAppLoaded.then((flutterApp) => {
-      console.log("Flutter app loaded");
-    });
-  </script>
-  <script src="python.js"></script>
-  <style id="splash-screen-style">
-    html {
-      height: 100%
-    }
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text);
+        }
 
-    body {
-      margin: 0;
-      min-height: 100%;
-      background-color: #ffffff;
-          background-size: 100% 100%;
-    }
+        .logo::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
 
-    .center {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .contain {
-      display:block;
-      width:100%; height:100%;
-      object-fit: contain;
-    }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
 
-    .stretch {
-      display:block;
-      width:100%; height:100%;
-    }
+        .nav-links a:hover {
+            color: var(--text);
+            background-color: var(--surface);
+            border-color: var(--border);
+        }
 
-    .cover {
-      display:block;
-      width:100%; height:100%;
-      object-fit: cover;
-    }
+        .nav-links a.active-pill {
+            color: var(--text);
+            border-color: var(--accent);
+            background-color: var(--accent-dim);
+        }
 
-    .bottom {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      -ms-transform: translate(-50%, 0);
-      transform: translate(-50%, 0);
-    }
+        /* --- HERO INTRO --- */
+        header {
+            margin-bottom: 80px;
+        }
 
-    .bottomLeft {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(242, 95, 58, 0.2);
+        }
 
-    .bottomRight {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #222222;
-          }
-    }
-  </style>
-  <script id="splash-screen-script">
-    function removeSplashFromWeb() {
-      document.getElementById("splash")?.remove();
-      document.getElementById("splash-branding")?.remove();
-      document.body.style.background = "transparent";
-    }
-  </script>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        h1 span {
+            color: var(--accent);
+        }
+
+        .hero-p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 620px;
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT SECTIONS --- */
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px; 
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* --- RESPONSIVE RESPONSIVE GRID --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- SKILLS SYSTEM TAGS --- */
+        .skills-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* --- COMPACT FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 20px;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2.2rem; }
+            nav { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .nav-links { flex-wrap: wrap; }
+            footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+            footer div { margin-top: 10px; }
+            footer a { margin-left: 0; margin-right: 20px; }
+        }
+    </style>
 </head>
-
 <body>
-  <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
-  </picture>
-  <script src="flutter_bootstrap.js" async=""></script>
 
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">thegeekachu</a>
+            <div class="nav-links">
+                <a href="#projects" class="active-pill">Projects</a>
+                <a href="#blog">Blog</a>
+                <a href="#stack">Stack</a>
+                <a href="mailto:vijayakasee@gmail.com">Contact</a>
+            </div>
+        </nav>
 
+        <header>
+            <div class="badge">Available for core infrastructure roles</div>
+            <h1>Building computing architecture at <span>extreme speeds</span>.</h1>
+            <p class="hero-p">I'm a systems developer specialized in low-latency communication networks, distributed computing protocols, and compiling high-throughput data streams.</p>
+        </header>
 
-</body></html>
+        <section id="projects">
+            <div class="section-title">Featured Projects</div>
+            <div class="grid">
+                <a href="https://github.com" target="_blank" class="card">
+                    <h3>01 // Project Aegis</h3>
+                    <p>An open-source payload checking agent optimized for multi-threaded stream analysis and real-time anomaly isolation.</p>
+                </a>
+                <a href="https://github.com" target="_blank" class="card">
+                    <h3>02 // Quantum Chat</h3>
+                    <p>A distributed messaging matrix built on Go WebSockets to experiment with concurrent payload execution.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="stack">
+            <div class="section-title">Core Systems Stack</div>
+            <div class="skills-group">
+                <div class="tag">Go (Golang)</div>
+                <div class="tag">Rust Architecture</div>
+                <div class="tag">Python / FastAPI</div>
+                <div class="tag">Linux Kernels</div>
+                <div class="tag">Distributed Systems</div>
+                <div class="tag">Docker & K8s</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 TheGeekachuDev. Engineered with raw code.</p>
+            <div>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="mailto:vijayakasee@gmail.com">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const links = document.querySelectorAll('.nav-links a:not([href^="mailto"])');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(l => l.classList.remove('active-pill'));
+                link.classList.add('active-pill');
+            });
+        });
+    </script>
+</body>
+</html>
